@@ -899,7 +899,7 @@ class TryHeader(Statement):
 
     def validate(self):
         if self.get_tokens(Token.ARGUMENT):
-            self.errors += ('TRY has condition.',)
+            self.errors += ('TRY has an argument.',)
 
 
 @Statement.register
@@ -908,6 +908,7 @@ class ExceptHeader(Statement):
 
     @classmethod
     def from_params(cls, pattern=None, indent=FOUR_SPACES, separator=FOUR_SPACES, eol=EOL):
+        # FIXME patterns
         tokens = [
             Token(Token.SEPARATOR, indent),
             Token(Token.FOR),

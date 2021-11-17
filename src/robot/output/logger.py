@@ -253,7 +253,7 @@ class LoggerProxy(AbstractLoggerProxy):
         'FOR': 'start_for',
         'FOR ITERATION': 'start_for_iteration',
         'TRY/EXCEPT ROOT': 'start_try_except',
-        'TRY': 'start_try',
+        'TRY': 'start_try', # FIXME -> start_try_block
         'TRY ELSE': 'start_try',
         'EXCEPT': 'start_except',
         'RETURN': 'start_return'

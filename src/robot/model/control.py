@@ -166,6 +166,7 @@ class Except(BodyItem):
     __slots__ = ['pattern']
 
     def __init__(self, pattern=None, parent=None):
+        # FIXME -> patterns
         self.pattern = pattern or []
         self.parent = parent
         self.body = None
@@ -174,22 +175,8 @@ class Except(BodyItem):
     def body(self, body):
         return self.body_class(self, body)
 
-    @property
-    def id(self):
-        """Branch id omits the root IF/ELSE object from the parent id part."""
-        if not self.parent:
-            return 'k1'
-        index = self.parent.body.index(self) + 1
-        if not self.parent.parent:
-            return 'k%d' % index
-        return '%s-k%d' % (self.parent.parent.id, index)
-
     def __str__(self):
-        if self.type == self.TRY:
-            return 'TRY'
-        if self.type == self.EXCEPT:
-            return 'EXCEPT    %s' % self.pattern
-        return 'ELSE'
+        return 'EXCEPT    %s' % self.pattern
 
     def visit(self, visitor):
         visitor.visit_try_branch(self)
